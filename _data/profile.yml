@@ -11,7 +11,7 @@ positions:
 
 # 先把照片上傳到 網站根目錄，再填入路徑，例如 /portrait.jpg。
 # 留空時顯示照片預留位置，不會使用別人的照片。
-portrait_url: ""
+portrait_url: "/個人照片.jpg"
 
 # 公開聯絡方式。留空的連結不會顯示。
 email: ""
