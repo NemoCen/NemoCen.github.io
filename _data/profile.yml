@@ -6,8 +6,8 @@ secondary_name: "岑文山"
 navbar_name: "" # 留空時自動沿用 primary_name
 
 positions:
-  - name: "你的職稱／學位"
-  - name: "你的學校／研究單位"
+  - name: "PhD Candidate"
+  - name: "National Taiwan University"
 
 # 先把照片上傳到 網站根目錄，再填入路徑，例如 /portrait.jpg。
 # 留空時顯示照片預留位置，不會使用別人的照片。
