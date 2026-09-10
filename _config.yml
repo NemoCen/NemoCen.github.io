@@ -1,3 +1,10 @@
-theme: jekyll-theme-minimal
-title: 你的名字
-description: 個人履歷與研究介紹
+title: NemoCen
+description: "NemoCen 的個人學術網站：關於我、履歷、研究與作品，以及獎項與榮譽。"
+url: "https://nemocen.github.io"
+baseurl: ""
+lang: zh-Hant
+timezone: Asia/Taipei
+markdown: kramdown
+exclude:
+  - README.md
+  - LICENSE
