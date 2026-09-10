@@ -2,7 +2,7 @@
 # 請保留縮排（使用空格）、冒號與引號。重複的資料可以複製整個「-」項目。
 
 primary_name: "NemoCen"
-secondary_name: "你的中文姓名"
+secondary_name: "岑文山"
 navbar_name: "" # 留空時自動沿用 primary_name
 
 positions:
