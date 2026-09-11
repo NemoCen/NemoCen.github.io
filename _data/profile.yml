@@ -13,7 +13,7 @@ positions:
 # 使用 Add file → Upload files 選擇真正的照片檔案上傳到網站根目錄。
 # 不要使用 Create new file 建立 .jpg 文字檔。路徑例如 /personalimage.jpg。
 # 留空時顯示照片預留位置，不會使用別人的照片。
-portrait_url: "/personalimage.jpg"
+portrait_url: "/personalimage.png"
 
 # 公開聯絡方式。留空的連結不會顯示。
 email: "D11921B21@ntu.edu.tw"
