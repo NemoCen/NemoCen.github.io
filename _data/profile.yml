@@ -1,4 +1,5 @@
-# 你的網站內容都在這一個檔案。編輯後 Commit changes，網站會自動更新。
+# 中文內容與共用照片、聯絡方式在這裡；英文內容請編輯 _data/profile_en.yml。
+# 編輯後 Commit changes，網站會自動更新。兩種語言的文字需要各自維護。
 # 請保留縮排（使用空格）、冒號與引號。重複的資料可以複製整個「-」項目。
 
 primary_name: "NemoCen"
@@ -6,10 +7,11 @@ secondary_name: "岑文山"
 navbar_name: "" # 留空時自動沿用 primary_name
 
 positions:
-  - name: "PhD Candidate"
-  - name: "National Taiwan University"
+  - name: "博士候選人"
+  - name: "國立臺灣大學"
 
-# 先把照片上傳到 網站根目錄，再填入路徑，例如 /portrait.jpg。
+# 使用 Add file → Upload files 選擇真正的照片檔案上傳到網站根目錄。
+# 不要使用 Create new file 建立 .jpg 文字檔。路徑例如 /personalimage.jpg。
 # 留空時顯示照片預留位置，不會使用別人的照片。
 portrait_url: "/personalimage.jpg"
 
