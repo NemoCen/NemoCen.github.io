@@ -1,0 +1,35 @@
+# English content. Keep the same item order as _data/profile.yml.
+# Photo, contact details, and CV are shared from the Chinese profile.
+# Edit both language files when adding or changing your biography or research.
+
+primary_name: "NemoCen"
+secondary_name: "岑文山"
+navbar_name: ""
+
+positions:
+  - name: "PhD Candidate"
+  - name: "National Taiwan University"
+
+about:
+  - "I am a PhD student in the Control Systems group of the Department of Electrical Engineering at National Taiwan University. My research focuses on rehabilitation robotics, control systems, and reinforcement learning."
+
+interests: []
+education: []
+experience: []
+
+research:
+  - title: "Fatigue-Aware Multi-Parameter Policy Learning for Upper-Limb Exoskeleton Control"
+    type: "Publication"
+    venue: "IEEE/ASME (AIM) International Conference"
+    date: "2026"
+    description: "This work proposes a fatigue-aware control framework for an upper-limb rehabilitation exoskeleton. It combines reinforcement learning, dynamic movement primitives (DMPs), and variable stiffness control to adapt movement targets, speed, and stiffness to the user's fatigue level. Simulation results show that the method significantly reduces tracking error under high fatigue, demonstrating the potential of multi-parameter policy learning for prolonged rehabilitation control."
+    cover: ""
+    links: []
+
+awards:
+  - name: "Award / honor"
+    organization: "Awarding organization"
+    date: "Year"
+  - name: "Award / honor"
+    organization: "Awarding organization"
+    date: "Year"
