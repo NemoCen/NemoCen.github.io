@@ -22,7 +22,7 @@ cv_link: "" # 上傳 PDF 後填路徑，例如 /cv.pdf
 
 about:
   - "我是台灣大學電機工程學系控制組的博士班研究生，我主要研究的方向為 復健機器人, 控制系統和強化學習 。"
-  - "你可以接著介紹過去的背景、感興趣的研究問題，以及目前正在進行的工作。每一段文字對應這裡的一個項目。"
+  # - "你可以接著介紹過去的背景、感興趣的研究問題，以及目前正在進行的工作。每一段文字對應這裡的一個項目。"
 
 # interests:
 #   - "研究方向一"
@@ -53,12 +53,11 @@ about:
 #     - name: "Code"
 #       url: "https://github.com/你的帳號/專案"
 research:
-  - title: "論文／研究題目"
+  - title: "Fatigue-Aware Multi-Parameter Policy Learning for Upper-Limb Exoskeleton Control"
     type: "Publication"
-    authors: "你的姓名、共同作者"
-    venue: "期刊／會議名稱"
-    date: "發表年份"
-    description: "用兩到三句話介紹研究問題、使用的方法，以及主要成果。"
+    venue: "IEEE/ASME (AIM) International Conference "
+    date: "2026"
+    description: "提出一套具疲勞感知能力的上肢復健外骨骼控制框架，結合強化學習、動態運動基元（DMP）與可變剛度控制，依使用者疲勞程度自適應調整運動目標、速度與剛度。模擬結果顯示，此方法在高疲勞狀態下能顯著降低追蹤誤差，展現多參數策略學習在長時間復健控制中的潛力。"
     cover: "" # 例如 /research-1.jpg
     links: []
   # - title: "研究專案／作品名稱"
