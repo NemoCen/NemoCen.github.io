@@ -1,0 +1,247 @@
+{% assign language = page.lang | default: 'zh-Hant' %}
+{% assign ui = site.data.ui[language] %}
+{% assign shared = site.data.profile %}
+{% assign profile = shared %}
+{% if language == 'en' %}{% assign profile = site.data.profile_en %}{% endif %}
+<!doctype html>
+<html lang="{{ language }}">
+<!-- Adapted from luost26/academic-homepage (MIT License). -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ profile.primary_name | escape }} — {{ ui.page_title | escape }}</title>
+  <meta name="description" content="{{ profile.primary_name | escape }} — {{ ui.description | escape }}">
+  <meta name="theme-color" content="#f8f9fa">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" hreflang="zh-Hant" href="{{ '/' | absolute_url }}">
+  <link rel="alternate" hreflang="en" href="{{ '/en/' | absolute_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ '/' | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ ui.og_locale }}">
+  <meta property="og:locale:alternate" content="{{ ui.og_alternate }}">
+  <meta property="og:title" content="{{ profile.primary_name | escape }} — {{ ui.page_title | escape }}">
+  <meta property="og:description" content="{{ profile.primary_name | escape }} — {{ ui.description | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231b293d%22/%3E%3Ctext%20x%3D%2212%22%20y%3D%2246%22%20fill%3D%22%23fff%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2244%22%3EN%3C/text%3E%3Ccircle%20cx%3D%2251%22%20cy%3D%2247%22%20r%3D%224%22%20fill%3D%22%238db2ff%22/%3E%3C/svg%3E%0A" type="image/svg+xml">
+  <style>
+/* Adapted from luost26/academic-homepage; see LICENSE. */
+:root{--background:#f8f9fa;--card:#fff;--text:#252a30;--muted:#65707d;--link:#0868c4;--line:#e8ebee;--radius:.8rem;--page-width:1140px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-offset,90px)}
+body{margin:0;color:var(--text);background:var(--background);font-family:"Lato",-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}a:focus-visible{outline:3px solid var(--link);outline-offset:5px;border-radius:2px}::selection{background:#d4e8ff}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:fixed;left:1rem;top:1rem;z-index:100;background:var(--text);color:#fff;padding:.5rem 1rem;transform:translateY(-160%)}.skip-link:focus{transform:none}
+.page-width{width:min(var(--page-width),calc(100% - 48px));margin-inline:auto}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(0,0,0,.04);box-shadow:0 1px 5px rgba(20,35,55,.055);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.navbar{min-height:62px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px}
+.nav-start{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-block:10px}
+.language-switch{display:flex;align-items:center;padding:3px;gap:3px;border:1px solid #dde4ec;border-radius:6px;background:#f7f9fb}
+.language-switch a{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:2px 10px;border-radius:4px;color:var(--muted);font-size:.875rem;line-height:1.5;white-space:nowrap}.language-switch a:hover{text-decoration:none;color:var(--link)}.language-switch a[aria-current="page"]{background:var(--link);color:#fff}
+.brand{font-size:1.125rem;font-weight:700;color:var(--text)}.brand:hover{text-decoration:none}
+.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:28px}.nav-links a{color:var(--muted);font-size:.9375rem;padding:18px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}.nav-links a:hover{color:var(--text);text-decoration:none}.nav-links a[aria-current]{color:var(--text);border-bottom-color:var(--link)}
+.academic-layout{display:grid;grid-template-columns:262px minmax(0,1fr);align-items:start;gap:24px;margin-top:26px}
+.profile-column{position:sticky;top:calc(var(--header-offset,82px) + 6px)}.card{border-radius:var(--radius);background:var(--card);box-shadow:0 2px 5px rgba(28,43,60,.065);border:1px solid rgba(30,50,70,.035)}
+.profile-card{padding:25px 24px 23px;text-align:center}
+.portrait{display:block;width:100%;height:auto;max-height:250px;aspect-ratio:1 / 1;object-fit:cover;border-radius:5px}
+.portrait-placeholder{min-height:194px;background:#f2f4f6;border:1px dashed #cdd4db;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#727d88}
+.portrait-placeholder span{font-size:1.25rem;font-weight:400}.portrait-placeholder small{font-size:.875rem;margin-top:4px}
+h1{margin:19px 0 0;font-size:1.6rem;line-height:1.3;font-weight:700;overflow-wrap:anywhere}
+.secondary-name{margin:5px 0 14px;font-size:.9375rem;color:var(--muted)}
+.positions{margin-top:12px}.positions p{margin:0;font-size:.9375rem;line-height:1.8}
+.profile-links{display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:16px;font-size:.9375rem;overflow-wrap:anywhere}.profile-links a{max-width:100%}.profile-links a span[aria-hidden]{font-size:.875rem}.cv-link{margin-top:8px}
+.content-column{min-width:0;display:flex;flex-direction:column;gap:20px}.section-card{padding:28px 32px 30px}
+.section-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 16px;margin-bottom:18px}
+h2{margin:0;font-size:1.45rem;font-weight:700;line-height:1.5}.section-title>span{color:var(--muted);font-size:.875rem}
+.bio p{margin:0 0 14px}.bio p:last-child{margin-bottom:0}
+.interests{margin-top:22px}.interests h3{font-size:.9375rem;margin:0 0 9px}.interests ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}.interests li{border:1px solid #e3e8ed;background:#f7f9fb;border-radius:4px;padding:2px 11px;color:#4d6075;font-size:.875rem}
+.resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}.subheading{font-size:1rem;margin:1px 0 17px;line-height:1.5}.subheading>span{font-size:.875rem;color:var(--muted);font-weight:400;margin-left:8px}
+.timeline{list-style:none;margin:0;padding:0}.timeline li{position:relative;border-left:1px solid #dbe3ec;padding:0 0 24px 18px;margin-left:4px}.timeline li:before{content:"";position:absolute;left:-4px;top:10px;width:7px;height:7px;border-radius:50%;background:#9aaec2}.timeline li:last-child{padding-bottom:2px;border-left-color:transparent}
+.entry-title{font-size:1rem;font-weight:500}.entry-detail{font-size:.9375rem;color:var(--muted);line-height:1.75}.empty-state{margin:0;color:var(--muted);font-size:.9375rem}
+.entry-date{font-size:.875rem;font-style:italic;color:var(--muted);margin-top:5px}
+.research-heading{padding:24px 32px 20px;margin:0;border-bottom:1px solid var(--line)}.research-item{display:grid;grid-template-columns:154px minmax(0,1fr);gap:23px;padding:26px 30px}.research-item+.research-item{border-top:1px solid var(--line)}
+.research-cover{width:154px;height:108px;object-fit:contain;background:#f6f8fa;border-radius:4px}
+.research-placeholder{align-self:start;min-height:108px;background:#f2f5f8;border:1px solid #e8ecf1;border-radius:4px;color:#697d91;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.research-placeholder span{font-size:.9375rem}.research-placeholder small{margin-top:2px;font-size:.75rem;color:var(--muted)}
+.research-copy{min-width:0}.research-copy h3{margin:0 0 6px;font-size:1.125rem;font-weight:500;line-height:1.55}.research-copy p{margin:0}
+.research-authors,.research-venue{font-size:.875rem}.research-venue span{margin-left:8px;color:var(--muted)}
+.research-copy .research-description{color:var(--muted);font-size:.9375rem;margin-top:8px;line-height:1.7}
+.research-links{display:flex;flex-wrap:wrap;gap:8px 13px;margin-top:8px;font-size:.875rem}
+.awards-list{padding:0;margin:0;list-style:none}.awards-list li{display:flex;justify-content:space-between;gap:24px;padding:12px 0}.awards-list li:first-child{padding-top:0}.awards-list li:last-child{padding-bottom:0}.awards-list li+li{border-top:1px solid var(--line)}
+.award-name{display:block;font-size:1rem}.award-organization{display:block;font-size:.875rem;color:var(--muted)}.award-date{color:var(--muted);font-size:.875rem;font-style:italic;padding-top:2px}
+.site-footer{margin-top:36px;border-top:1px solid var(--line);padding-top:21px;padding-bottom:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;color:var(--muted);font-size:.75rem}.site-footer a{color:var(--muted)}
+@media(max-width:1000px){
+.academic-layout{grid-template-columns:225px minmax(0,1fr);gap:20px}.profile-card{padding:23px 20px}.portrait-placeholder{min-height:165px}.section-card{padding:25px}.resume-grid{grid-template-columns:1fr;gap:28px}.research-heading{padding:22px 25px}.research-item{grid-template-columns:125px minmax(0,1fr);padding:23px 25px;gap:18px}.research-cover{width:125px;height:95px}.research-placeholder{min-height:95px}
+}
+@media(max-width:740px){
+html{scroll-padding-top:var(--header-offset,108px)}.page-width{width:calc(100% - 32px)}.navbar{flex-wrap:wrap;gap:0;min-height:94px;padding-top:4px}.nav-start{width:100%;padding-block:8px;gap:10px 16px}.brand{font-size:1rem}.nav-links{width:100%;justify-content:space-between;gap:12px}.nav-links a{font-size:.875rem;padding:9px 0 11px}.academic-layout{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:20px}.profile-column{position:static}.profile-card{padding:25px 24px}.portrait,.portrait-placeholder{width:140px;height:140px;min-height:140px;margin:0 auto;border-radius:50%}h1{font-size:1.5rem;margin-top:15px}.secondary-name{margin-bottom:10px}.profile-links{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:13px}.cv-link{margin:0}.section-card{padding:23px}.content-column{gap:18px}.section-title{gap:4px 14px}h2{font-size:1.3rem}.research-heading{padding:21px 23px}.research-item{grid-template-columns:minmax(0,1fr);padding:23px;gap:16px}.research-cover{width:100%;height:auto;max-height:210px}.research-placeholder{width:100%;min-height:85px}.awards-list li{gap:16px}.site-footer{margin-top:28px;gap:9px 18px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+@media print{
+body{background:#fff;color:#000;font-size:11pt}.site-header,.site-footer,.skip-link,.portrait-placeholder,.research-placeholder{display:none}.page-width{width:100%}.academic-layout{display:block;margin:0}.profile-column{position:static}.profile-card{padding:0 0 18pt;text-align:left}.portrait{display:none}.profile-links{display:block}.profile-links a{margin-right:12pt}.card{border:0;box-shadow:none}.section-card{padding:16pt 0;border-top:1px solid #ddd}.section-title{break-after:avoid}.research-heading{padding:16pt 0;border-top:1px solid #ddd}.research-item{padding:14pt 0;display:block;break-inside:avoid}.research-cover{float:left;margin:0 14pt 7pt 0}.resume-grid{grid-template-columns:1fr 1fr}a{color:#000}.timeline li,.awards-list li{break-inside:avoid}
+}
+
+</style>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">{{ ui.skip | escape }}</a>
+  <header class="site-header">
+    <nav class="navbar page-width" aria-label="{{ ui.navigation | escape }}">
+      <div class="nav-start">
+        <div class="language-switch" role="group" aria-label="{{ ui.language | escape }}">
+          <a href="{{ '/' | relative_url }}" lang="zh-Hant" hreflang="zh-Hant" data-language="zh-Hant"{% if language == 'zh-Hant' %} aria-current="page"{% endif %}>中文</a>
+          <a href="{{ '/en/' | relative_url }}" lang="en" hreflang="en" data-language="en"{% if language == 'en' %} aria-current="page"{% endif %}>English</a>
+        </div>
+        <a class="brand" href="#top">{{ profile.navbar_name | default: profile.primary_name | escape }}</a>
+      </div>
+      <div class="nav-links">
+        <a href="#about" aria-current="location">{{ ui.about | escape }}</a>
+        <a href="#resume">{{ ui.resume | escape }}</a>
+        <a href="#research">{{ ui.research | escape }}</a>
+        <a href="#awards">{{ ui.awards | escape }}</a>
+      </div>
+    </nav>
+  </header>
+  <main class="page-width" id="main">
+<div class="academic-layout" id="top">
+  <aside class="profile-column" aria-label="{{ ui.profile | escape }}">
+    <div class="card profile-card">
+      {% if shared.portrait_url and shared.portrait_url != "" %}
+      <img class="portrait" src="{{ shared.portrait_url | relative_url | escape }}" alt="{{ profile.primary_name | escape }}{{ ui.portrait_alt | escape }}" width="200" height="200" data-portrait>
+      {% endif %}
+      <div class="portrait-placeholder" role="img" aria-label="{{ ui.photo_pending | escape }}" data-portrait-placeholder{% if shared.portrait_url and shared.portrait_url != "" %} hidden{% endif %}><span>{{ ui.photo | escape }}</span><small>{{ ui.photo_pending | escape }}</small></div>
+      <h1>{{ profile.primary_name | escape }}</h1>
+      {% if profile.secondary_name and profile.secondary_name != "" %}<p class="secondary-name">{{ profile.secondary_name | escape }}</p>{% endif %}
+      <div class="positions">{% for item in profile.positions %}<p>{{ item.name | escape }}</p>{% endfor %}</div>
+      <div class="profile-links">
+        {% if shared.email and shared.email != "" %}<a href="mailto:{{ shared.email | escape }}">{{ shared.email | escape }}</a>{% endif %}
+        {% if shared.github and shared.github != "" %}<a href="https://github.com/{{ shared.github | escape }}" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span><span class="sr-only">{{ ui.new_tab | escape }}</span></a>{% endif %}
+        {% if shared.gscholar and shared.gscholar != "" %}<a href="{{ shared.gscholar | escape }}" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span><span class="sr-only">{{ ui.new_tab | escape }}</span></a>{% endif %}
+        {% if shared.orcid and shared.orcid != "" %}<a href="https://orcid.org/{{ shared.orcid | escape }}" target="_blank" rel="noopener noreferrer">ORCID <span aria-hidden="true">↗</span><span class="sr-only">{{ ui.new_tab | escape }}</span></a>{% endif %}
+        {% if shared.cv_link and shared.cv_link != "" %}<a class="cv-link" href="{{ shared.cv_link | relative_url | escape }}" target="_blank" rel="noopener noreferrer">{{ ui.cv | escape }} <span aria-hidden="true">↗</span><span class="sr-only">{{ ui.new_tab | escape }}</span></a>{% endif %}
+      </div>
+    </div>
+  </aside>
+
+  <div class="content-column">
+    <section class="card section-card" id="about" aria-labelledby="about-heading">
+      <div class="section-title"><h2 id="about-heading">{{ ui.about | escape }}</h2></div>
+      <div class="bio">{% for paragraph in profile.about %}<p>{{ paragraph | escape }}</p>{% endfor %}</div>
+      {% if profile.interests.size > 0 %}<div class="interests"><h3>{{ ui.interests | escape }}</h3><ul>{% for interest in profile.interests %}<li>{{ interest | escape }}</li>{% endfor %}</ul></div>{% endif %}
+    </section>
+
+    <section class="card section-card" id="resume" aria-labelledby="resume-heading">
+      <div class="section-title"><h2 id="resume-heading">{{ ui.resume | escape }}</h2></div>
+      <div class="resume-grid">
+        <div>
+          <h3 class="subheading">{{ ui.education | escape }}</h3>
+          <ol class="timeline">
+            {% for item in profile.education %}
+            <li><div class="entry-title">{{ item.name | escape }}</div>{% if item.dept and item.dept != "" %}<div class="entry-detail">{{ item.dept | escape }}</div>{% endif %}<div class="entry-detail">{{ item.position | escape }}</div><div class="entry-date">{{ item.date | escape }}</div></li>
+            {% endfor %}
+          </ol>
+          {% unless profile.education.size > 0 %}<p class="empty-state">{{ ui.empty | escape }}</p>{% endunless %}
+        </div>
+        <div>
+          <h3 class="subheading">{{ ui.experience | escape }}</h3>
+          <ol class="timeline">
+            {% for item in profile.experience %}
+            <li><div class="entry-title">{{ item.name | escape }}</div><div class="entry-detail">{{ item.position | escape }}</div>{% if item.description and item.description != "" %}<div class="entry-detail">{{ item.description | escape }}</div>{% endif %}<div class="entry-date">{{ item.date | escape }}</div></li>
+            {% endfor %}
+          </ol>
+          {% unless profile.experience.size > 0 %}<p class="empty-state">{{ ui.empty | escape }}</p>{% endunless %}
+        </div>
+      </div>
+    </section>
+
+    <section class="card research-card" id="research" aria-labelledby="research-heading">
+      <div class="section-title research-heading"><h2 id="research-heading">{{ ui.research | escape }}</h2></div>
+      <div class="research-list">
+        {% for item in profile.research %}
+        {% assign shared_research = shared.research[forloop.index0] %}
+        {% assign research_cover = item.cover | default: shared_research.cover %}
+        {% assign research_links = item.links | default: shared_research.links %}
+        <article class="research-item">
+          {% if research_cover and research_cover != "" %}
+          <img class="research-cover" src="{{ research_cover | relative_url | escape }}" alt="{{ item.title | escape }}" loading="lazy" width="180" height="120">
+          {% else %}
+          <div class="research-placeholder" aria-hidden="true"><span>{% case item.type %}{% when "Publication" %}{{ ui.publication | escape }}{% when "Project" %}{{ ui.project | escape }}{% else %}{{ item.type | escape }}{% endcase %}</span><small>{{ ui.research_image | escape }}</small></div>
+          {% endif %}
+          <div class="research-copy">
+            <h3>{{ item.title | escape }}</h3>
+            {% if item.authors and item.authors != "" %}<p class="research-authors">{{ item.authors | escape }}</p>{% endif %}
+            <p class="research-venue"><em>{{ item.venue | escape }}</em>{% if item.date and item.date != "" %}<span>{{ item.date | escape }}</span>{% endif %}</p>
+            <p class="research-description">{{ item.description | escape }}</p>
+            {% if research_links.size > 0 %}<div class="research-links">{% for link in research_links %}{% if link.url and link.url != "" %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">[{{ link.name | escape }}]<span class="sr-only">{{ ui.new_tab | escape }}</span></a>{% endif %}{% endfor %}</div>{% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="card section-card" id="awards" aria-labelledby="awards-heading">
+      <div class="section-title"><h2 id="awards-heading">{{ ui.awards | escape }}</h2></div>
+      <ul class="awards-list">
+        {% for item in profile.awards %}<li><div><span class="award-name">{{ item.name | escape }}</span>{% if item.organization and item.organization != "" %}<span class="award-organization">{{ item.organization | escape }}</span>{% endif %}</div><span class="award-date">{{ item.date | escape }}</span></li>{% endfor %}
+      </ul>
+    </section>
+  </div>
+</div>
+</main>
+  <footer class="site-footer page-width"><span>© {{ site.time | date: '%Y' }} {{ profile.primary_name | escape }}</span><a href="https://github.com/luost26/academic-homepage" target="_blank" rel="noopener noreferrer">{{ ui.template | escape }}academic-homepage<span class="sr-only">{{ ui.new_tab | escape }}</span></a><a href="#top">{{ ui.back_to_top | escape }}</a></footer>
+<script>
+"use strict";
+// Both language versions are rendered by Jekyll and work without JavaScript.
+// Keep the current section when switching languages; do not redirect visitors automatically.
+const languageLinks = [...document.querySelectorAll(".language-switch a")];
+function updateLanguageLinks() {
+  for (const link of languageLinks) {
+    const target = new URL(link.href);
+    target.hash = window.location.hash;
+    link.href = target.href;
+  }
+}
+window.addEventListener("hashchange", updateLanguageLinks);
+updateLanguageLinks();
+
+// An empty or invalid image should leave a clean placeholder, not a broken image.
+const portrait = document.querySelector("[data-portrait]");
+const portraitPlaceholder = document.querySelector("[data-portrait-placeholder]");
+if (portrait && portraitPlaceholder) {
+  function showPortraitFallback() {
+    portrait.hidden = true;
+    portraitPlaceholder.hidden = false;
+  }
+  portrait.addEventListener("error", showPortraitFallback);
+  if (portrait.complete && portrait.naturalWidth === 0) showPortraitFallback();
+}
+const navigationLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+const sections = navigationLinks.map((link) => document.querySelector(link.hash)).filter(Boolean);
+let scheduled = false;
+function updateNavigation() {
+  const headerHeight = document.querySelector(".site-header").offsetHeight;
+  document.documentElement.style.setProperty("--header-offset", String(headerHeight + 20) + "px");
+  let current = sections[0];
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= headerHeight + 80) current = section;
+  }
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1];
+  for (const link of navigationLinks) {
+    if (current && link.hash === "#" + current.id) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  }
+  scheduled = false;
+}
+function scheduleUpdate() {
+  if (!scheduled) { scheduled = true; window.requestAnimationFrame(updateNavigation); }
+}
+window.addEventListener("scroll", scheduleUpdate, { passive: true });
+window.addEventListener("resize", scheduleUpdate, { passive: true });
+window.addEventListener("hashchange", scheduleUpdate);
+updateNavigation();
+
+</script>
+</body>
+</html>
