@@ -21,29 +21,29 @@ orcid: "" # 填 ORCID 編號
 cv_link: "" # 上傳 PDF 後填路徑，例如 /cv.pdf
 
 about:
-  - "我是台蛙請在這裡介紹你自己：目前的身分、所屬單位，以及主要研究或專業方向。"
+  - "我是台灣大學電機工程學系控制組的博士班研究生，我主要研究的方向為 復健機器人, 控制系統和強化學習 。"
   - "你可以接著介紹過去的背景、感興趣的研究問題，以及目前正在進行的工作。每一段文字對應這裡的一個項目。"
 
-interests:
-  - "研究方向一"
-  - "研究方向二"
-  - "研究方向三"
+# interests:
+#   - "研究方向一"
+#   - "研究方向二"
+#   - "研究方向三"
 
-education:
-  - name: "學校名稱"
-    dept: "系所名稱"
-    position: "學位／就讀身分"
-    date: "入學年份 — 畢業年份"
-  - name: "學校名稱"
-    dept: "系所名稱"
-    position: "學位"
-    date: "入學年份 — 畢業年份"
+# education:
+#   - name: "學校名稱"
+#     dept: "系所名稱"
+#     position: "學位／就讀身分"
+#     date: "入學年份 — 畢業年份"
+#   - name: "學校名稱"
+#     dept: "系所名稱"
+#     position: "學位"
+#     date: "入學年份 — 畢業年份"
 
-experience:
-  - name: "公司／研究室／機構名稱"
-    position: "職稱／參與身分"
-    description: "簡述你的工作內容、研究任務或主要貢獻。"
-    date: "開始年份 — 結束年份"
+# experience:
+#   - name: "公司／研究室／機構名稱"
+#     position: "職稱／參與身分"
+#     description: "簡述你的工作內容、研究任務或主要貢獻。"
+#     date: "開始年份 — 結束年份"
 
 # 研究與作品。增加項目時，複製從「- title」到「links」的完整一組。
 # links 範例（請替換成真實網址）：
@@ -61,14 +61,14 @@ research:
     description: "用兩到三句話介紹研究問題、使用的方法，以及主要成果。"
     cover: "" # 例如 /research-1.jpg
     links: []
-  - title: "研究專案／作品名稱"
-    type: "Project"
-    authors: "你的姓名／合作團隊"
-    venue: "專案類型或研究單位"
-    date: "完成年份"
-    description: "介紹專案的目標、你的角色，以及實際完成的內容。"
-    cover: ""
-    links: []
+  # - title: "研究專案／作品名稱"
+  #   type: "Project"
+  #   authors: "你的姓名／合作團隊"
+  #   venue: "專案類型或研究單位"
+  #   date: "完成年份"
+  #   description: "介紹專案的目標、你的角色，以及實際完成的內容。"
+  #   cover: ""
+  #   links: []
 
 awards:
   - name: "獎項／榮譽名稱"
